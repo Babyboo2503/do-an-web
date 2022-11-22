@@ -37,22 +37,23 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/index.html">
+                        <a href="admin.html">
                             <img src="img/admin/log-out.png" class="navlogo"/>
                             <span class="title">Đăng xuất</span>
                         </a>
                     </li>
                 </ul>
             </div>
-            <!-- Content -->
+            <!-- Topbar -->
             <div class="topbar">
                 <div class="toggle" onclick="toggleMenu()"></div>
-                <a href="/index.html" id="logo"><img src="img/logo.png"/></a>
+                <a href="admin.html" id="logo"><img src="img/admin/logo.png"/></a>
                 <div class="admin-info">
                     <a href="#" class="admin-cart"><img src="img/admin/shopping-cart.png"/></a>
                     <div class="name">[Admin's name]</div>
                 </div>
             </div>
+            <!-- Main -->
             <div class="main">
                 <div class="card-box">
                     <a href="#" class="card">
@@ -72,8 +73,9 @@
                         <img src="img/admin/accsetting.png" class="card-logo"/>
                     </a>
                 </div>
-                <div class=page-title>DANH MỤC SẢN PHẨM</div>
+                <!-- Sản phẩm -->
                 <div class="content">
+                    <div class=page-title>DANH MỤC SẢN PHẨM</div>
                     <div class="searching-bar">
                         <input value="" placeholder="Tìm kiếm sản phẩm theo tên, thể loại, id...">
                     </div>
@@ -81,25 +83,48 @@
                     <div class="options">
                         <div>
                             <label for="choices">Sản phẩm: </label>
-                            <select name="luaChon" id="choices">
-                                <option type="text" value="">Sách</option>
-                                <option type="text" value="">Văn phòng phẩm</option>
-                                <option type="text" value="">Tất cả</option>
+                            <select name="luaChonSP" id="procuct_choice" onchange="renderProducts()">
+                                <option value="books">Sách</option>
+                                <option value="stationery">Văn phòng phẩm</option>
+                                <option value="all">Tất cả</option>
                             </select>
                         </div>
                         <div>
                             <label for="choices">Sắp xếp theo: </label>
-                            <select name="luaChon" id="choices">
-                                <option type="text" value="">ID tăng dần</option>
-                            <option type="text" value="">ID giảm dần</option>
-                            <option type="text" value="">Tên (A-Z)</option>
-                            <option type="text" value="">Tên (Z-A)</option>
+                            <select name="luaChonSX" id="sort_choice" onchange="renderProducts()">
+                                <option value="asc_id">ID tăng dần</option>
+                                <option value="dsc_id">ID giảm dần</option>
                             </select>
                         </div>
                     </div>
-
-
-
+                    <div class="detail_wrapper" onfocus="onFocus">
+                        <h2 class="detail_head">Thông tin sản phẩm</h2>
+                        <div class="detail">
+                            <div class="left_detail">
+                                <div><img src="img/book/ando.jpg" alt="null"></div>
+                                <div><input type="file" id="change_image" disabled></div>
+                                <div id="id">id</div>
+                            </div>
+                            <div class="right_detail">
+                                <div class="detail_pro">
+                                    <label>Tên:</label>
+                                    <input type="text" name="name_pro" id="name" readonly="readOnly">
+                                </div>
+                                <div class="detail_pro">
+                                    <label>Giá:</label>
+                                    <input type="number" name="name_pro" id="price" readonly="readOnly">
+                                </div>
+                                <div class="detail_pro">
+                                    <label>Tác giả:</label>
+                                    <input type="text" name="name_pro" id="author" readonly="readOnly">
+                                </div>
+                                <div class="detail_pro">
+                                    <label>Mô tả:</label>
+                                    <input type="text" name="name_pro" id="descr" readonly="readOnly">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <table border="1px">
                         <thead>
                             <tr>
@@ -109,7 +134,7 @@
                                 <th>Giá</th>
                                 <th>Chi tiết</th>
                                 <th>Tùy chỉnh</th>
-                                </tr>
+                            </tr>
                         </thead>
                         <tbody class="products">
                         </tbody>
@@ -125,6 +150,137 @@
                             &gt;
                         </button>
                     </div>
+                </div>
+                
+                <!-- Đơn hàng -->
+                <div class="content">
+                    <div class=page-title>ĐƠN HÀNG</div>
+                    <div class="searching-bar">
+                        <input value="" placeholder="Tìm kiếm đơn hàng theo số điện thoại, mã đơn...">
+                    </div>
+                    <table border="1px">
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Số điện thoại</th>
+                            <th>Tên khách hàng</th>
+                            <th>Địa chỉ</th>
+                            <th>Chi tiết</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        <tr>
+                            <td>0001</td>
+                            <td>0000000000</td>
+                            <td>Ngân đẹp gái</td>
+                            <td>Trái đất</td>
+                            <td><a href="#">Chi tiết</a></td>
+                            <td class="radio-status">
+                                <p><input type="radio" name="trangthai">Đang xử lý</p>
+                                <p><input type="radio" name="trangthai">Xử lý xong</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0002</td>
+                            <td>0000000001</td>
+                            <td>Trình chó</td>
+                            <td>Sao hỏa</td>
+                            <td><a href="#">Chi tiết</a></td>
+                            <td class="radio-status">
+                                <p><input type="radio" name="trangthai">Đang xử lý</p>
+                                <p><input type="radio" name="trangthai">Xử lý xong</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- QUẢN LÍ KHÁCH HÀNG -->
+                <div class="content">
+                    <div class="page-title">KHÁCH HÀNG</div>
+                    <div class="searching-bar">
+                        <input value="" placeholder="Tìm kiếm khách theo tên, số điện thoại">
+                    </div>
+                    <table border="1px">
+                        <tr>
+                            <th>Số điện thoại</th>
+                            <th>Tên khách hàng</th>
+                            <th>Lịch sử mua hàng</th>
+                            <th>Địa chỉ</th>
+                        </tr>
+                        <tr>
+                            <td>0000000000</td>
+                            <td>Ngân đẹp gái</td>
+                            <td><a href="#">Xem</a></td>
+                            <td>Trái đất</td>
+                        </tr>
+                        <tr>
+                            <td>0000000001</td>
+                            <td>Trình chó</td>
+                            <td><a href="#">Xem</a></td>
+                            <td>Sao hỏa</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- THÔNG TIN -->
+                <div class="content information-admin">
+                    <div class="page-title">THÔNG TIN</div>
+                    <table border="1">
+                        <tr>
+                            <td>Email</td>
+                            <td><a href="#">fahase.co@gmail.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>Hotline</td>
+                            <td>0123456789</td>
+                        </tr>
+                        <tr>
+                            <td>Tên</td>
+                            <td>Fahase</td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ</td>
+                            <td>Trái đất</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="footer">
+                    <div class="footer-left">
+                        <a href="admin.html"><img src="img/admin/logo.png" id="footer-logo"/></a>
+                        <p><i>Công ty TNHH Fahase</i></p>
+                        <p><i>Địa chỉ: số 3</i></p>
+                        <a href=""><img src="img/admin/Facebook-on.png"></a>
+                        <a href=""><img src="img/admin/Insta-on.png"></a>
+                        <a href=""><img src="img/admin/tumblr-on.png"></a>
+                        <a href=""><img src="img/admin/twitter-on.png"></a>
+                        <a href=""><img src="img/admin/Youtube-on.png"></a>
+                    </div>
+                    <div class="footer-right">
+                        <div class="service-footer-admin">
+                            <h3>DỊCH VỤ</h3>
+                            <dl>Điều khoản</dl>
+                            <dl>Chính sách bảo mật thông tin</dl>
+                            <dl>Chính sách bảo mật thanh toán</dl>
+                            <dl>Giới thiệu</dl>
+                            <dl>Hệ thống cửa hàng</dl>
+                        </div>
+                        <div class="support-footer-admin">
+                            <h3>HỖ TRỢ</h3>
+                            <dl>Chính sách đổi- trả- hoàn tiền</dl>
+                            <dl>Chính sách bảo hành- bồi hoàn</dl>
+                            <dl>Chính sách vận chuyển</dl>
+                            <dl>Chính sách khách sỉ</dl>
+                            <dl>Phương thức thanh toán, xuất HĐ</dl>
+                        </div>
+                        <div class="contact-footer-admin">
+                            <h3>LIÊN HỆ</h3>
+                            <img src="img/admin/marker.png"><p>Trái đất</p>
+                            <img src="img/admin/hotline.png"><p>0123456789</p>
+                            <div class="payment-footer">
+                                <img src="img/admin/momopay.png">
+                                <img src="img/admin/shopeepay_logo1.png">
+                                <img src="img/admin/logo_moca_120.jpg">
+                            </div>   
+                        </div>
+                    </div>  
+                    
                 </div>
             </div>
         </div>
